@@ -1,13 +1,123 @@
-<!-- Sidebar -> Penny Lists submenu (replace your current items) -->
-<div class="dropdown" onclick="toggleSub('pennySub')">Penny Lists</div>
-<div id="pennySub" class="submenu">
-  <a href="#newPostsSection">New Penny Posts</a>
-  <a href="https://kristiesconnections.com/" target="_blank" rel="noopener">Kristie’s Connections – Latest</a>
-  <a href="https://thefreebieguy.com/dollar-general-penny-shopping-master-list/" target="_blank" rel="noopener">
-    The Freebie Guy – Master Penny List
-  </a>
-  <a href="https://thekrazycouponlady.com/tips/store-hacks/dollar-general-penny-list" target="_blank" rel="noopener">
-    Krazy Coupon Lady – DG Penny List (updates Mondays)
-  </a>
-  <a href="https://www.reddit.com/r/DollarGeneral/" target="_blank" rel="noopener">Reddit r/DollarGeneral</a>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Penny & Deals Tracker</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#0d1117">
+</head>
+<body>
+
+  <!-- Sidebar with dropdown categories -->
+  <div class="sidebar">
+    <h2>Menu</h2>
+
+    <div class="dropdown" data-target="remindersSub">Reminders</div>
+    <div id="remindersSub" class="submenu">
+      <a href="#reminderSection">View & Add</a>
+      <a href="#" id="exportIcsLink">Export .ics</a>
+    </div>
+
+    <div class="dropdown" data-target="pennySub">Penny Lists</div>
+    <div id="pennySub" class="submenu">
+      <a href="#newPostsSection">New Penny Posts</a>
+      <a href="https://kristiesconnections.com/" target="_blank" rel="noopener">Kristie’s Connections – Latest</a>
+      <a href="https://thefreebieguy.com/dollar-general-penny-shopping-master-list/" target="_blank" rel="noopener">
+        The Freebie Guy – Master Penny List
+      </a>
+      <a href="https://thekrazycouponlady.com/tips/store-hacks/dollar-general-penny-list" target="_blank" rel="noopener">
+        Krazy Coupon Lady – DG Penny List
+      </a>
+      <a href="https://www.reddit.com/r/DollarGeneral/" target="_blank" rel="noopener">Reddit r/DollarGeneral</a>
+    </div>
+
+    <div class="dropdown" data-target="homeSub">Home Depot</div>
+    <div id="homeSub" class="submenu">
+      <a href="https://www.homedepot.com/" target="_blank" rel="noopener">Home Depot – Home</a>
+      <a href="https://www.thekrazycouponlady.com/tips/store-hacks/home-depot-penny-items" target="_blank" rel="noopener">
+        Home Depot Penny Items Guide
+      </a>
+    </div>
+
+    <div class="dropdown" data-target="watchSub">Watchlist</div>
+    <div id="watchSub" class="submenu">
+      <a href="#watchlistSection">Tracked Items</a>
+    </div>
+
+    <div class="sidebar-footer small">
+      <button id="enableNotif" class="bubble-btn small-btn">Enable Notifications</button>
+      <div class="small">Tip: For guaranteed alerts, export .ics → add to Calendar.</div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+
+    <section id="reminderSection" class="section">
+      <h2>Weekly Reminders</h2>
+      <div id="list"></div>
+
+      <div class="grid2">
+        <label>Title
+          <input id="title" placeholder="e.g. Check Dollar General Penny List">
+        </label>
+        <label>Message
+          <input id="message" placeholder="Short message (optional)">
+        </label>
+      </div>
+
+      <div class="grid3">
+        <label>Weekday
+          <select id="weekday">
+            <option value="MO">Monday</option>
+            <option value="TU">Tuesday</option>
+            <option value="WE">Wednesday</option>
+            <option value="TH">Thursday</option>
+            <option value="FR">Friday</option>
+            <option value="SA">Saturday</option>
+            <option value="SU">Sunday</option>
+          </select>
+        </label>
+        <label>Time (24h)
+          <input id="time" type="time" value="09:00">
+        </label>
+        <div class="btn-row">
+          <button id="addBtn" class="bubble-btn">Add Reminder</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="newPostsSection" class="section">
+      <h2>New Penny List Detected</h2>
+      <div id="newPosts"></div>
+    </section>
+
+    <section id="watchlistSection" class="section">
+      <h2>Watchlist</h2>
+      <form id="watchForm" class="watch-form">
+        <div class="grid2">
+          <label>Item Name<input id="wName" required></label>
+          <label>SKU Number<input id="wSku" required></label>
+        </div>
+        <div class="grid3">
+          <label>Location (Store or ZIP)<input id="wLocation"></label>
+          <label>Date Added<input id="wDate" type="date" required></label>
+          <label>Price<input id="wPrice" type="number" step="0.01" placeholder="e.g. 14.97"></label>
+        </div>
+        <label>Notes<input id="wNotes" placeholder="Link, aisle, color, etc."></label>
+        <button type="submit" class="bubble-btn">Add Item</button>
+      </form>
+
+      <div id="watchlist"></div>
+      <div class="small" style="margin-top:8px">
+        Edit prices inline. Everything is stored locally on this device.
+      </div>
+    </section>
+
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
